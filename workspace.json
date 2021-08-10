@@ -1,0 +1,76 @@
+{
+  "version": 2,
+  "projects": {
+    "nx-cdk": {
+      "root": "packages/nx-cdk",
+      "sourceRoot": "packages/nx-cdk/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/nx-cdk/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/nx-cdk"],
+          "options": {
+            "jestConfig": "packages/nx-cdk/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/nx-cdk",
+            "tsConfig": "packages/nx-cdk/tsconfig.lib.json",
+            "packageJson": "packages/nx-cdk/package.json",
+            "main": "packages/nx-cdk/src/index.ts",
+            "assets": [
+              "packages/nx-cdk/*.md",
+              {
+                "input": "./packages/nx-cdk/src",
+                "glob": "**/!(*.ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/nx-cdk/src",
+                "glob": "**/*.d.ts",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/nx-cdk",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/nx-cdk",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "nx-cdk-e2e": {
+      "root": "e2e/nx-cdk-e2e",
+      "projectType": "application",
+      "sourceRoot": "e2e/nx-cdk-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "nx-cdk:build",
+            "jestConfig": "e2e/nx-cdk-e2e/jest.config.js"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
+  }
+}
