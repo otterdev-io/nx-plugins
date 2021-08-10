@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "nx-cdk",
+  "version": "0.0.1",
+  "generators": {
+    "nx-cdk": {
+      "factory": "./src/generators/nx-cdk/generator",
+      "schema": "./src/generators/nx-cdk/schema.json",
+      "description": "nx-cdk generator"
+    }
+  }
+}
