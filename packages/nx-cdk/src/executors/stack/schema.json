@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "Stacks",
+  "description": "Run cdk command for given stacks",
+  "type": "object",
+  "properties": {
+    "command": {
+      "type": "string",
+      "description": "CDK command to be run"
+    },
+    "stacks": {
+      "type": "array",
+      "description": "The stacks to run for",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["command"]
+}

@@ -3,9 +3,9 @@
   "name": "nx-cdk",
   "version": "0.0.1",
   "generators": {
-    "cdk-app": {
-      "factory": "./src/generators/cdk-app/generator",
-      "schema": "./src/generators/cdk-app/schema.json",
+    "app": {
+      "factory": "./src/generators/app/generator",
+      "schema": "./src/generators/app/schema.json",
       "description": "Generate a cdk app using cdk init"
     }
   }

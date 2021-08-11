@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "CDK Deploy",
+  "description": "Run cdk deploy",
+  "type": "object",
+  "properties": {
+    "environments": {
+      "type": "array",
+      "description": "The environments to bootstrap",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["environments"]
+}
