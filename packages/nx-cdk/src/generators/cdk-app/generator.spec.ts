@@ -2,11 +2,14 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
-import { NxCdkGeneratorSchema } from './schema';
+import { CdkAppGeneratorSchema } from './schema';
 
-describe('nx-cdk generator', () => {
+describe('cdk-app generator', () => {
   let appTree: Tree;
-  const options: NxCdkGeneratorSchema = { name: 'test' };
+  const options: CdkAppGeneratorSchema = {
+    name: 'test',
+    cdkCommand: 'npx cdk',
+  };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace();
