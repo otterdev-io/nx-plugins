@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "NxCdkInit",
+  "cli": "nx",
+  "title": "Init CDK Plugin",
+  "type": "object",
+  "properties": {
+    "unitTestRunner": {
+      "description": "Adds the specified unit test runner.",
+      "type": "string",
+      "enum": ["jest", "none"],
+      "default": "jest"
+    }
+  },
+  "required": []
+}

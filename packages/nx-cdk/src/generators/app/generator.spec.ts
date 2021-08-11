@@ -8,7 +8,6 @@ describe('cdk-app generator', () => {
   let appTree: Tree;
   const options: AppGeneratorSchema = {
     name: 'test',
-    cdkCommand: 'npx cdk',
   };
 
   beforeEach(() => {

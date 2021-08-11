@@ -21,12 +21,6 @@
       },
       "x-prompt": "What name would you like to use?"
     },
-    "cdkCommand": {
-      "type": "string",
-      "description": "Command used to invoke cdk",
-      "default": "npx cdk",
-      "x-prompt": "What command do you use to invoke the cdk?"
-    },
     "tags": {
       "type": "string",
       "description": "Add tags to the project (used for linting)",
@@ -36,7 +30,13 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "unitTestRunner": {
+      "type": "string",
+      "enum": ["jest", "none"],
+      "description": "Test runner to use for unit tests.",
+      "default": "jest"
     }
   },
-  "required": ["name", "cdkCommand"]
+  "required": ["name"]
 }

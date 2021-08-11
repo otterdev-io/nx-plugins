@@ -6,13 +6,20 @@ export default async function runExecutor(
   options: StackExecutorSchema,
   context: ExecutorContext
 ) {
-  const projectOptions = context.workspace.projects[context.projectName];
+  console.log(
+    `${getPackageManagerCommand().exec} cdk ${
+      options.command
+    } ${options.stacks.join(' ')}`
+  );
   spawnSync(
-    getPackageManagerCommand().run(
-      'cdk',
-      `${options.command} ${options.stacks.join(' ')}`
-    ),
-    { cwd: projectOptions.root, shell: true, stdio: 'inherit' }
+    `${getPackageManagerCommand().exec} cdk ${
+      options.command
+    } ${options.stacks.join(' ')}`,
+    {
+      cwd: context.workspace.projects[context.projectName].root,
+      shell: true,
+      stdio: 'inherit',
+    }
   );
   return {
     success: true,
