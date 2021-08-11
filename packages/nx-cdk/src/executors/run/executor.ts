@@ -1,20 +1,15 @@
-import { StackExecutorSchema } from './schema';
+import { CDKRunExecutorSchema } from './schema';
 import { ExecutorContext, getPackageManagerCommand } from '@nrwl/devkit';
 import { spawnSync } from 'child_process';
 
 export default async function runExecutor(
-  options: StackExecutorSchema,
+  options: CDKRunExecutorSchema,
   context: ExecutorContext
 ) {
-  console.log(
-    `${getPackageManagerCommand().exec} cdk ${
-      options.command
-    } ${options.stacks.join(' ')}`
-  );
   const out = spawnSync(
     `${getPackageManagerCommand().exec} cdk ${
       options.command
-    } ${options.stacks.join(' ')}`,
+    } ${options.parameters.join(' ')} ${options.options.join(' ')}`,
     {
       cwd: context.workspace.projects[context.projectName].root,
       shell: true,

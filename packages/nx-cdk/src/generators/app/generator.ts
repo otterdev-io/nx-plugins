@@ -13,6 +13,7 @@ import { AppGeneratorSchema } from './schema';
 import { jestProjectGenerator } from '@nrwl/jest';
 import initGenerator from '../init/init';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
+import { CDKRunExecutorSchema } from '../../executors/run/schema';
 
 interface NormalizedSchema extends AppGeneratorSchema {
   projectName: string;
@@ -78,21 +79,21 @@ export default async function (host: Tree, schema: AppGeneratorSchema) {
 
   const initTask = await initGenerator(host, options);
 
-  const stackTarget = (command) => ({
-    executor: '@otterdev/nx-cdk:stack',
-    options: { command },
+  const runTarget = (opts: CDKRunExecutorSchema) => ({
+    executor: '@otterdev/nx-cdk:run',
+    options: opts,
     outputs: [`${options.projectRoot}/cdk.out`],
   });
   addProjectConfiguration(host, options.projectName, {
     root: options.projectRoot,
     projectType: 'application',
     targets: {
-      synth: stackTarget('synth'),
+      synth: runTarget({ command: 'synth', parameters: [], options: ['-q'] }),
       deploy: {
-        ...stackTarget('deploy'),
+        ...runTarget({ command: 'deploy', options: [], parameters: [] }),
         dependsOn: [{ target: 'synth', projects: 'self' }],
       },
-      destroy: stackTarget('destroy'),
+      destroy: runTarget({ command: 'destroy', options: [], parameters: [] }),
       bootstrap: {
         executor: '@otterdev/nx-cdk:bootstrap',
       },

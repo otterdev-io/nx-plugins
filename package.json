@@ -1,7 +1,12 @@
 {
-  "name": "@otterdev/nx-cdk-workspace",
+  "name": "@otterdev/nx-plugins",
   "version": "0.0.1",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otterdev-io/nx-plugins.git"
+  },
+  "homepage": "https://github.com/otterdev-io/nx-plugins",
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
@@ -25,7 +30,6 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help"
   },
-  "private": true,
   "dependencies": {
     "tslib": "^2.0.0"
   },
