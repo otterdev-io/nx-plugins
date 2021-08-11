@@ -1,5 +1,5 @@
 {
-  "npmScope": "nx-cdk",
+  "npmScope": "otterdev",
   "affected": {
     "defaultBase": "master"
   },

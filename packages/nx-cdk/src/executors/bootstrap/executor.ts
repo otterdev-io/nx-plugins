@@ -6,7 +6,7 @@ export default async function runExecutor(
   options: BootstrapExecutorSchema,
   context: ExecutorContext
 ) {
-  spawnSync(
+  const out = spawnSync(
     `${
       getPackageManagerCommand().exec
     } cdk bootstrap ${options.environments.join(' ')}`,
@@ -17,6 +17,6 @@ export default async function runExecutor(
     }
   );
   return {
-    success: true,
+    success: out.status === 0,
   };
 }

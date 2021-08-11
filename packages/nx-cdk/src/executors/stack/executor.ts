@@ -11,7 +11,7 @@ export default async function runExecutor(
       options.command
     } ${options.stacks.join(' ')}`
   );
-  spawnSync(
+  const out = spawnSync(
     `${getPackageManagerCommand().exec} cdk ${
       options.command
     } ${options.stacks.join(' ')}`,
@@ -22,6 +22,6 @@ export default async function runExecutor(
     }
   );
   return {
-    success: true,
+    success: out.status === 0,
   };
 }
