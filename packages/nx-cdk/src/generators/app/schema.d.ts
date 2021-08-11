@@ -1,7 +1,8 @@
-export interface AppGeneratorSchema {
+import { InitSchema } from '../init/schema';
+
+export interface AppGeneratorSchema extends InitSchema {
   project?: string;
   name: string;
-  cdkCommand: string;
   tags?: string;
   directory?: string;
 }

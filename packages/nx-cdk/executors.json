@@ -10,21 +10,6 @@
       "implementation": "./src/executors/stack/executor",
       "schema": "./src/executors/stack/schema.json",
       "description": "execute cdk for given stacks"
-    },
-    "synth": {
-      "implementation": "./src/executors/synth/executor",
-      "schema": "./src/executors/synth/schema.json",
-      "description": "execute cdk synth"
-    },
-    "deploy": {
-      "implementation": "./src/executors/deploy/executor",
-      "schema": "./src/executors/deploy/schema.json",
-      "description": "execute cdk deploy"
-    },
-    "destroy": {
-      "implementation": "./src/executors/destroy/executor",
-      "schema": "./src/executors/destroy/schema.json",
-      "description": "execute cdk destroy"
     }
   }
 }

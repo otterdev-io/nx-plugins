@@ -10,9 +10,9 @@ import {
 } from '@nrwl/devkit';
 import * as path from 'path';
 import { AppGeneratorSchema } from './schema';
-import { mkdir, mkdtemp } from 'fs/promises';
-import { spawnSync } from 'child_process';
-import { tmpdir } from 'os';
+import { jestProjectGenerator } from '@nrwl/jest';
+import initGenerator from '../init/init';
+import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 
 interface NormalizedSchema extends AppGeneratorSchema {
   projectName: string;
@@ -44,56 +44,62 @@ function normalizeOptions(
   };
 }
 
-function addFiles(host: Tree, options: NormalizedSchema, initDir: string) {
+export async function addJest(host: Tree, options: NormalizedSchema) {
+  if (options.unitTestRunner !== 'jest') {
+    return () => {};
+  }
+
+  return await jestProjectGenerator(host, {
+    project: options.projectName,
+    supportTsx: true,
+    skipSerializers: true,
+    setupFile: 'none',
+    babelJest: true,
+  });
+}
+
+function addFiles(host: Tree, options: NormalizedSchema) {
   const templateOptions = {
     ...options,
     ...names(options.name),
     offsetFromRoot: offsetFromRoot(options.projectRoot),
     template: '',
   };
-  generateFiles(host, initDir, options.projectRoot, templateOptions);
+  generateFiles(
+    host,
+    path.join(__dirname, 'files'),
+    options.projectRoot,
+    templateOptions
+  );
 }
 
-export default async function (host: Tree, options: AppGeneratorSchema) {
-  const normalizedOptions = normalizeOptions(host, options);
+export default async function (host: Tree, schema: AppGeneratorSchema) {
+  const options = normalizeOptions(host, schema);
+
+  const initTask = await initGenerator(host, options);
+
   const stackTarget = (command) => ({
     executor: 'nx-cdk:stack',
     options: { command },
-    outputs: [`${normalizedOptions.projectRoot}/cdk.out`],
+    outputs: [`${options.projectRoot}/cdk.out`],
   });
-  addProjectConfiguration(host, normalizedOptions.projectName, {
-    root: normalizedOptions.projectRoot,
+  addProjectConfiguration(host, options.projectName, {
+    root: options.projectRoot,
     projectType: 'application',
-    generators: {
-      'nx-cdk': {
-        application: {
-          cdkCommand: normalizedOptions.cdkCommand,
-        },
-      },
-    },
     targets: {
-      build: stackTarget('synth'),
+      synth: stackTarget('synth'),
       deploy: stackTarget('deploy'),
       destroy: stackTarget('destroy'),
       bootstrap: {
         executor: 'nx-cdk:bootstrap',
       },
     },
-    tags: normalizedOptions.parsedTags,
+    tags: options.parsedTags,
     implicitDependencies: options.project ? [options.project] : undefined,
   });
-  // We run cdk init in a temp directory so we can track the created files. THe folder needs to be named after our project though, since cdk follows it
-  const tmpDir = await mkdtemp(path.join(tmpdir(), `nx-cdk-`));
-  const initDir = path.join(tmpDir, normalizedOptions.projectName);
-  await mkdir(initDir);
-  spawnSync(
-    `${normalizedOptions.cdkCommand} init app --language=typescript --generate-only`,
-    { cwd: initDir, shell: true, stdio: 'inherit' }
-  );
+  addFiles(host, options);
+  const jestTask = await addJest(host, options);
 
-  addFiles(host, normalizedOptions, initDir);
   await formatFiles(host);
-  return async () => {
-    installPackagesTask(host, true, normalizedOptions.projectRoot);
-  };
+  return runTasksInSerial(initTask, jestTask);
 }
