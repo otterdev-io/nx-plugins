@@ -1,9 +1,9 @@
-import { BootstrapExecutorSchema } from './schema';
+import { CDKRunExecutorSchema } from './schema';
 import executor from './executor';
 
-const options: BootstrapExecutorSchema = {};
+const options: CDKRunExecutorSchema;
 
-describe('Bootstrap Executor', () => {
+describe('CDK Run Executor', () => {
   it('can run', async () => {
     //const output = await executor(options);
     //expect(output.success).toBe(true);

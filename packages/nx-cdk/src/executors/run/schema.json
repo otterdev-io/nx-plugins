@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "Run",
+  "description": "Run cdk command",
+  "type": "object",
+  "properties": {
+    "command": {
+      "type": "string",
+      "description": "CDK command to be run, eg context, synth, bootstrap"
+    },
+    "parameters": {
+      "type": "array",
+      "description": "Parameters for the given command, eg list of stacks",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "options": {
+      "type": "array",
+      "description": "Options to pass to cdk",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["command"]
+}
