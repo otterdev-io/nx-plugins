@@ -79,7 +79,7 @@ export default async function (host: Tree, schema: AppGeneratorSchema) {
   const initTask = await initGenerator(host, options);
 
   const stackTarget = (command) => ({
-    executor: 'nx-cdk:stack',
+    executor: '@otterdev/nx-cdk:stack',
     options: { command },
     outputs: [`${options.projectRoot}/cdk.out`],
   });
@@ -88,10 +88,13 @@ export default async function (host: Tree, schema: AppGeneratorSchema) {
     projectType: 'application',
     targets: {
       synth: stackTarget('synth'),
-      deploy: stackTarget('deploy'),
+      deploy: {
+        ...stackTarget('deploy'),
+        dependsOn: [{ target: 'synth', projects: 'self' }],
+      },
       destroy: stackTarget('destroy'),
       bootstrap: {
-        executor: 'nx-cdk:bootstrap',
+        executor: '@otterdev/nx-cdk:bootstrap',
       },
     },
     tags: options.parsedTags,
