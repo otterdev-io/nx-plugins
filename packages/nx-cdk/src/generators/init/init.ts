@@ -18,7 +18,7 @@ function updateCacheableTasks(tree: Tree) {
       defaultCacheableOperations &&
       !defaultCacheableOperations.includes('synth')
     ) {
-      defaultCacheableOperations.push('bootstrap', 'synth');
+      defaultCacheableOperations.push('synth');
     }
     return json;
   });
