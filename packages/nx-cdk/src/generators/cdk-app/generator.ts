@@ -1,16 +1,20 @@
 import {
   addProjectConfiguration,
-  formatFiles,
   generateFiles,
   getWorkspaceLayout,
   names,
   offsetFromRoot,
+  formatFiles,
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
-import { NxCdkGeneratorSchema } from './schema';
+import { CdkAppGeneratorSchema } from './schema';
+import { promisify } from 'util';
+import { spawn } from 'child_process';
+import { mkdir } from 'fs/promises';
+import { ChildProcessWithoutNullStreams } from 'node:child_process';
 
-interface NormalizedSchema extends NxCdkGeneratorSchema {
+interface NormalizedSchema extends CdkAppGeneratorSchema {
   projectName: string;
   projectRoot: string;
   projectDirectory: string;
@@ -19,14 +23,14 @@ interface NormalizedSchema extends NxCdkGeneratorSchema {
 
 function normalizeOptions(
   host: Tree,
-  options: NxCdkGeneratorSchema
+  options: CdkAppGeneratorSchema
 ): NormalizedSchema {
   const name = names(options.name).fileName;
   const projectDirectory = options.directory
     ? `${names(options.directory).fileName}/${name}`
     : name;
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
-  const projectRoot = `${getWorkspaceLayout(host).libsDir}/${projectDirectory}`;
+  const projectRoot = `${getWorkspaceLayout(host).appsDir}/${projectDirectory}`;
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
     : [];
@@ -55,12 +59,12 @@ function addFiles(host: Tree, options: NormalizedSchema) {
   );
 }
 
-export default async function (host: Tree, options: NxCdkGeneratorSchema) {
+export default async function (host: Tree, options: CdkAppGeneratorSchema) {
   const normalizedOptions = normalizeOptions(host, options);
   addProjectConfiguration(host, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
-    projectType: 'library',
-    sourceRoot: `${normalizedOptions.projectRoot}/src`,
+    projectType: 'application',
+    sourceRoot: normalizedOptions.projectRoot,
     targets: {
       build: {
         executor: '@nx-cdk/nx-cdk:build',
@@ -70,4 +74,12 @@ export default async function (host: Tree, options: NxCdkGeneratorSchema) {
   });
   addFiles(host, normalizedOptions);
   await formatFiles(host);
+  return async () => {
+    await mkdir(normalizedOptions.projectRoot);
+    await promisify(spawn)(
+      `${normalizedOptions.cdkCommand} init app --language=typescript --generate-only`,
+      [],
+      { cwd: normalizedOptions.projectRoot, shell: true, stdio: 'inherit' }
+    );
+  };
 }
