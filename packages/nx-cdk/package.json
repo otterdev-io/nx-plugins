@@ -1,7 +1,14 @@
 {
   "name": "@otterdev/nx-cdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "src/index.js",
   "generators": "./generators.json",
-  "executors": "./executors.json"
+  "executors": "./executors.json",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otterdev-io/nx-plugins.git"
+  },
+  "homepage": "https://github.com/otterdev-io/nx-plugins",
+  "description": "Nx plugin for AWS CDK apps",
+  "author": "Christopher Fraser"
 }
