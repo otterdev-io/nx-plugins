@@ -1,6 +1,6 @@
 # nx-cdk
 
-Currently the only plugin is nx-cdk, which provides a generator and executor for cdk apps.
+An Nx plugin which provides support for cdk apps.
 
 ## Add the plugin to your workspace:
 
@@ -14,14 +14,26 @@ npm install @otterdev-io/npm-cdk
 nx g @otterdev/nx-cdk:app <cdk project name>
 ```
 
-## Deploy:
+All CDK commands are supported
+
+For example, if your project is named web-infra:
+## Boostrap:
 
 ```sh
-nx deploy <cdk project name>
+nx run web-infra:boostrap
 ```
 
-or
+## Deploy:
+```
+nx run web-infra:deploy 
+```
 
 ```
-nx run <cdk project name>:deploy
+nx run web-infra:deploy WebBackendStack WebFrontendStack
+```
+
+Supply arguments with --options:
+
+```
+nx run web-infra:deploy WebBackendStack WebFrontendStack --options="--trace --verbose"
 ```
