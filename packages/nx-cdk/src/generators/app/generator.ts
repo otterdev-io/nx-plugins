@@ -6,7 +6,6 @@ import {
   offsetFromRoot,
   formatFiles,
   Tree,
-  installPackagesTask,
 } from '@nrwl/devkit';
 import * as path from 'path';
 import { AppGeneratorSchema } from './schema';
@@ -20,6 +19,7 @@ interface NormalizedSchema extends AppGeneratorSchema {
   projectRoot: string;
   projectDirectory: string;
   parsedTags: string[];
+  outputDirectory: string;
 }
 
 function normalizeOptions(
@@ -35,6 +35,7 @@ function normalizeOptions(
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
     : [];
+  const outputDirectory = `dist/${projectRoot}/cdk.out`;
 
   return {
     ...options,
@@ -42,12 +43,15 @@ function normalizeOptions(
     projectRoot,
     projectDirectory,
     parsedTags,
+    outputDirectory,
   };
 }
 
 export async function addJest(host: Tree, options: NormalizedSchema) {
   if (options.unitTestRunner !== 'jest') {
-    return () => {};
+    return () => {
+      /* do nothing */
+    };
   }
 
   return await jestProjectGenerator(host, {
@@ -82,21 +86,22 @@ export default async function (host: Tree, schema: AppGeneratorSchema) {
   const runTarget = (opts: CDKRunExecutorSchema) => ({
     executor: '@otterdev/nx-cdk:run',
     options: opts,
-    outputs: [`${options.projectRoot}/cdk.out`],
   });
   addProjectConfiguration(host, options.projectName, {
     root: options.projectRoot,
     projectType: 'application',
     targets: {
-      synth: runTarget({ command: 'synth', parameters: [], options: ['-q'] }),
-      deploy: {
-        ...runTarget({ command: 'deploy', options: [], parameters: [] }),
-        dependsOn: [{ target: 'synth', projects: 'self' }],
+      synth: {
+        ...runTarget({ command: 'synth', parameters: [], options: ['-q'] }),
+        outputs: [options.outputDirectory],
       },
-      destroy: runTarget({ command: 'destroy', options: [], parameters: [] }),
-      bootstrap: {
-        executor: '@otterdev/nx-cdk:bootstrap',
-      },
+      deploy: runTarget({ command: 'deploy', parameters: [], options: [] }),
+      destroy: runTarget({ command: 'destroy', parameters: [], options: [] }),
+      bootstrap: runTarget({
+        command: 'bootstrap',
+        parameters: [],
+        options: [],
+      }),
     },
     tags: options.parsedTags,
     implicitDependencies: options.project ? [options.project] : undefined,
