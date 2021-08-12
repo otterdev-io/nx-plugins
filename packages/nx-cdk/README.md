@@ -1,7 +1,27 @@
 # nx-cdk
 
-This library was generated with [Nx](https://nx.dev).
+Currently the only plugin is nx-cdk, which provides a generator and executor for cdk apps.
 
-## Running unit tests
+## Add the plugin to your workspace:
 
-Run `nx test nx-cdk` to execute the unit tests via [Jest](https://jestjs.io).
+```sh
+npm install @otterdev-io/npm-cdk
+```
+
+## Create a cdk app:
+
+```sh
+nx g @otterdev/nx-cdk:app <cdk project name>
+```
+
+## Deploy:
+
+```sh
+nx deploy <cdk project name>
+```
+
+or
+
+```
+nx run <cdk project name>:deploy
+```
