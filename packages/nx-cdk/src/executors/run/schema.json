@@ -24,7 +24,11 @@
       "items": {
         "type": "string"
       }
+    },
+    "outputPath": {
+      "type": "string",
+      "description": "Emits the synthesized cloud assembly into a directory"
     }
   },
-  "required": ["command"]
+  "required": ["command", "outputPath"]
 }

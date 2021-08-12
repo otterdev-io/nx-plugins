@@ -19,7 +19,6 @@ interface NormalizedSchema extends AppGeneratorSchema {
   projectRoot: string;
   projectDirectory: string;
   parsedTags: string[];
-  outputDirectory: string;
 }
 
 function normalizeOptions(
@@ -35,7 +34,6 @@ function normalizeOptions(
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
     : [];
-  const outputDirectory = `dist/${projectRoot}/cdk.out`;
 
   return {
     ...options,
@@ -43,7 +41,6 @@ function normalizeOptions(
     projectRoot,
     projectDirectory,
     parsedTags,
-    outputDirectory,
   };
 }
 
@@ -83,25 +80,31 @@ export default async function (host: Tree, schema: AppGeneratorSchema) {
 
   const initTask = await initGenerator(host, options);
 
-  const runTarget = (opts: CDKRunExecutorSchema) => ({
+  const runTarget = (opts: Omit<CDKRunExecutorSchema, 'outputPath'>) => ({
     executor: '@otterdev/nx-cdk:run',
-    options: opts,
+    options: { ...opts, outputPath: `dist/${options.projectRoot}/cdk.out` },
   });
   addProjectConfiguration(host, options.projectName, {
     root: options.projectRoot,
     projectType: 'application',
     targets: {
+      list: runTarget({ command: 'list', parameters: [], options: [] }),
       synth: {
         ...runTarget({ command: 'synth', parameters: [], options: ['-q'] }),
-        outputs: [options.outputDirectory],
+        outputs: ['{options.outputPath'],
       },
-      deploy: runTarget({ command: 'deploy', parameters: [], options: [] }),
-      destroy: runTarget({ command: 'destroy', parameters: [], options: [] }),
       bootstrap: runTarget({
         command: 'bootstrap',
         parameters: [],
         options: [],
       }),
+      deploy: runTarget({ command: 'deploy', parameters: [], options: [] }),
+      destroy: runTarget({ command: 'destroy', parameters: [], options: [] }),
+      diff: runTarget({ command: 'diff', parameters: [], options: [] }),
+      metadata: runTarget({ command: 'metadata', parameters: [], options: [] }),
+      context: runTarget({ command: 'context', parameters: [], options: [] }),
+      docs: runTarget({ command: 'docs', parameters: [], options: [] }),
+      doctor: runTarget({ command: 'doctor', parameters: [], options: [] }),
     },
     tags: options.parsedTags,
     implicitDependencies: options.project ? [options.project] : undefined,
