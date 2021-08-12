@@ -1,14 +1,13 @@
 {
-  "name": "@otterdev/nx-cdk",
-  "version": "0.0.6",
+  "name": "@otterdev/nx-exec",
+  "version": "0.0.1",
   "main": "src/index.js",
-  "generators": "./generators.json",
   "executors": "./executors.json",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/otterdev-io/nx-plugins.git"
   },
   "homepage": "https://github.com/otterdev-io/nx-plugins",
-  "description": "Nx plugin for AWS CDK apps",
+  "description": "Nx plugin to execute package commands with npx/yarn/pnpx",
   "author": "Christopher Fraser"
 }

@@ -12,13 +12,11 @@
     "parameters": {
       "type": "array",
       "description": "Parameters for the given command, eg list of stacks",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
+      "default": [],
       "items": {
         "type": "string"
-      }
+      },
+      "alias": "stacks"
     },
     "options": {
       "type": "string",

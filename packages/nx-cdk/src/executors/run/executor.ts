@@ -7,11 +7,9 @@ export default async function runExecutor(
   context: ExecutorContext
 ) {
   const out = spawnSync(
-    `${getPackageManagerCommand().exec} cdk ${
-      options.command
-    } ${options.parameters.join(' ')} ${options.options ?? ''} -o ${
-      options.outputPath
-    }`,
+    `${getPackageManagerCommand().exec} cdk ${options.command} ${
+      options.parameters?.join(' ') ?? ''
+    } ${options.options ?? ''} -o ${options.outputPath}`,
     {
       cwd: context.workspace.projects[context.projectName].root,
       shell: true,

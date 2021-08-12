@@ -82,28 +82,27 @@ export default async function (host: Tree, schema: AppGeneratorSchema) {
 
   const runTarget = (opts: Omit<CDKRunExecutorSchema, 'outputPath'>) => ({
     executor: '@otterdev/nx-cdk:run',
-    options: { ...opts, outputPath: `dist/${options.projectRoot}/cdk.out` },
+    options: { ...opts, outputPath: `dist/${options.projectRoot}` },
   });
   addProjectConfiguration(host, options.projectName, {
     root: options.projectRoot,
     projectType: 'application',
     targets: {
-      list: runTarget({ command: 'list', parameters: [] }),
+      list: runTarget({ command: 'list' }),
       synth: {
-        ...runTarget({ command: 'synth', parameters: [], options: '-q' }),
+        ...runTarget({ command: 'synth', options: '-q' }),
         outputs: ['{options.outputPath'],
       },
       bootstrap: runTarget({
         command: 'bootstrap',
-        parameters: [],
       }),
-      deploy: runTarget({ command: 'deploy', parameters: [] }),
-      destroy: runTarget({ command: 'destroy', parameters: [] }),
-      diff: runTarget({ command: 'diff', parameters: [] }),
-      metadata: runTarget({ command: 'metadata', parameters: [] }),
-      context: runTarget({ command: 'context', parameters: [] }),
-      docs: runTarget({ command: 'docs', parameters: [] }),
-      doctor: runTarget({ command: 'doctor', parameters: [] }),
+      deploy: runTarget({ command: 'deploy' }),
+      destroy: runTarget({ command: 'destroy' }),
+      diff: runTarget({ command: 'diff' }),
+      metadata: runTarget({ command: 'metadata' }),
+      context: runTarget({ command: 'context' }),
+      docs: runTarget({ command: 'docs' }),
+      doctor: runTarget({ command: 'doctor' }),
     },
     tags: options.parsedTags,
     implicitDependencies: options.project ? [options.project] : undefined,

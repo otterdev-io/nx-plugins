@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@otterdev/nx-exec": ["packages/nx-exec/src/index.ts"],
       "nx-cdk/nx-cdk": ["packages/nx-cdk/src/index.ts"]
     }
   },
