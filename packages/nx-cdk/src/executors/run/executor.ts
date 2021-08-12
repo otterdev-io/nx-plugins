@@ -9,7 +9,7 @@ export default async function runExecutor(
   const out = spawnSync(
     `${getPackageManagerCommand().exec} cdk ${
       options.command
-    } ${options.parameters.join(' ')} ${options.options.join(' ')} -o ${
+    } ${options.parameters.join(' ')} ${options.options ?? ''} -o ${
       options.outputPath
     }`,
     {

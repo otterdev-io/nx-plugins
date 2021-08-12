@@ -1,6 +1,6 @@
 export interface CDKRunExecutorSchema {
   command: string;
   parameters: string[];
-  options: string[];
+  options?: string;
   outputPath: string;
 }
