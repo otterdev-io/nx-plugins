@@ -21,12 +21,8 @@
       }
     },
     "options": {
-      "type": "array",
-      "description": "Options to pass to cdk",
-      "default": [],
-      "items": {
-        "type": "string"
-      }
+      "type": "string",
+      "description": "Options to pass to cdk"
     },
     "outputPath": {
       "type": "string",
