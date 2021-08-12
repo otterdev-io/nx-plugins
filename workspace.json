@@ -68,6 +68,74 @@
           }
         }
       }
+    },
+    "nx-exec": {
+      "root": "packages/nx-exec",
+      "sourceRoot": "packages/nx-exec/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/nx-exec/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/nx-exec"],
+          "options": {
+            "jestConfig": "packages/nx-exec/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/nx-exec",
+            "tsConfig": "packages/nx-exec/tsconfig.lib.json",
+            "packageJson": "packages/nx-exec/package.json",
+            "main": "packages/nx-exec/src/index.ts",
+            "assets": [
+              "packages/nx-exec/*.md",
+              {
+                "input": "./packages/nx-exec/src",
+                "glob": "**/!(*.ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/nx-exec/src",
+                "glob": "**/*.d.ts",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/nx-exec",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/nx-exec",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "nx-exec-e2e": {
+      "root": "e2e/nx-exec-e2e",
+      "projectType": "application",
+      "sourceRoot": "e2e/nx-exec-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "nx-exec:build",
+            "jestConfig": "e2e/nx-exec-e2e/jest.config.js"
+          }
+        }
+      }
     }
   },
   "cli": {

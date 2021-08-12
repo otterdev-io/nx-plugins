@@ -5,7 +5,7 @@ An Nx plugin which provides support for cdk apps.
 ## Add the plugin to your workspace:
 
 ```sh
-npm install @otterdev-io/npm-cdk
+npm install @otterdev-io/nx-cdk
 ```
 
 ## Create a cdk app:
@@ -28,12 +28,13 @@ nx run web-infra:boostrap
 nx run web-infra:deploy 
 ```
 
+## Deploy certain stacks:
 ```
-nx run web-infra:deploy WebBackendStack WebFrontendStack
+nx run web-infra:deploy --parameters=WebBackendStack,WebFrontendStack
 ```
 
 Supply arguments with --options:
 
 ```
-nx run web-infra:deploy WebBackendStack WebFrontendStack --options="--trace --verbose"
+nx run web-infra:deploy --parameters=WebBackendStack,WebFrontendStack --options="--trace --verbose"
 ```

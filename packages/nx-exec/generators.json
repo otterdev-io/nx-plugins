@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "nx-exec",
+  "version": "0.0.1",
+  "generators": {
+    "nx-exec": {
+      "factory": "./src/generators/nx-exec/generator",
+      "schema": "./src/generators/nx-exec/schema.json",
+      "description": "nx-exec generator"
+    }
+  }
+}

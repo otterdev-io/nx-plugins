@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "exec",
+  "version": "0.0.1",
+  "generators": {
+    "exec": {
+      "factory": "./src/generators/exec/generator",
+      "schema": "./src/generators/exec/schema.json",
+      "description": "exec generator"
+    }
+  }
+}

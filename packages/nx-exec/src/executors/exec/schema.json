@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "Exec package command",
+  "description": "Execute a package command with package manager, eg npx, yarn, pnpx",
+  "type": "object",
+  "properties": {
+    "command": {
+      "type": "string",
+      "description": "Command to execute with package manager"
+    },
+    "cwd": {
+      "type": "string",
+      "description": "Working directory to execute the command from. Defaults to workspace directory"
+    }
+  },
+  "required": ["command"]
+}

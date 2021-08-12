@@ -33,6 +33,13 @@
     "nx-cdk-e2e": {
       "tags": [],
       "implicitDependencies": ["nx-cdk"]
+    },
+    "nx-exec": {
+      "tags": []
+    },
+    "nx-exec-e2e": {
+      "tags": [],
+      "implicitDependencies": ["nx-exec"]
     }
   },
   "workspaceLayout": {
