@@ -6,25 +6,18 @@ import {
 } from '@nrwl/devkit';
 import { spawnSync } from 'child_process';
 import path = require('path');
-
+import { runExecutor as execExecutor } from '@otterdev/nx-exec';
 export default async function runExecutor(
   options: CDKRunExecutorSchema,
   context: ExecutorContext
 ) {
   const projectRoot = context.workspace.projects[context.projectName].root;
   const outPath = path.join(offsetFromRoot(projectRoot), options.outputPath);
+  const parameters = options.parameters?.join(' ') ?? '';
+  const opt = options.options ?? '';
 
-  const out = spawnSync(
-    `${getPackageManagerCommand().exec} cdk ${options.command} ${
-      options.parameters?.join(' ') ?? ''
-    } ${options.options ?? ''} -o ${outPath}`,
-    {
-      cwd: projectRoot,
-      shell: true,
-      stdio: 'inherit',
-    }
-  );
-  return {
-    success: out.status === 0,
-  };
+  return execExecutor({
+    command: ` cdk ${options.command} ${parameters} ${opt} -o ${outPath}`,
+    cwd: projectRoot,
+  });
 }
