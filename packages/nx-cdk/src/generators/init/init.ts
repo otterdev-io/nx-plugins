@@ -41,7 +41,7 @@ function updateDependencies(tree: Tree) {
       '@aws-cdk/assert': '1.118.0',
       '@types/node': '10.17.27',
       'ts-node': '^9.0.0',
-      // '@otterdev/nx-cdk': 'latest',
+      '@otterdev/nx-cdk': 'latest',
     }
   );
 }
