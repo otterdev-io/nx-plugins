@@ -23,6 +23,22 @@ For example, if your project is named web-infra:
 nx run web-infra:boostrap
 ```
 
+## Synth:
+
+To just synth:
+
+```sh
+nx run web-infra:synth
+```
+
+or you can use
+
+```sh
+nx run web-infra:build
+```
+
+Which will build dependent projects aswell in the default configuration
+
 ## Deploy:
 ```
 nx run web-infra:deploy 

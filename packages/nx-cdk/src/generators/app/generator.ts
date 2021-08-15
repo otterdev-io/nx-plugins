@@ -93,6 +93,10 @@ export default async function (host: Tree, schema: AppGeneratorSchema) {
         ...runTarget({ command: 'synth', options: '-q' }),
         outputs: ['{options.outputPath'],
       },
+      build: {
+        ...runTarget({ command: 'synth', options: '-q' }),
+        outputs: ['{options.outputPath'],
+      },
       bootstrap: runTarget({
         command: 'bootstrap',
       }),
