@@ -1,6 +1,6 @@
 {
   "name": "@otterdev/nx-cdk",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "src/index.js",
   "generators": "./generators.json",
   "executors": "./executors.json",
@@ -12,6 +12,6 @@
   "description": "Nx plugin for AWS CDK apps",
   "author": "Christopher Fraser",
   "dependencies": {
-    "@otterdev/nx-exec": "^0.0.2"
+    "@otterdev/nx-exec": "^0.0.3"
   }
 }
