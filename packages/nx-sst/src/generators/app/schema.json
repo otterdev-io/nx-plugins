@@ -5,13 +5,6 @@
   "title": "app",
   "type": "object",
   "properties": {
-    "project": {
-      "type": "string",
-      "description": "The name of the project being deployed.",
-      "$default": {
-        "$source": "projectName"
-      }
-    },
     "name": {
       "type": "string",
       "description": "",
