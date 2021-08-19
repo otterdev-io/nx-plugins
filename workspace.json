@@ -136,6 +136,74 @@
           }
         }
       }
+    },
+    "nx-sst": {
+      "root": "packages/nx-sst",
+      "sourceRoot": "packages/nx-sst/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["packages/nx-sst/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/nx-sst"],
+          "options": {
+            "jestConfig": "packages/nx-sst/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/nx-sst",
+            "tsConfig": "packages/nx-sst/tsconfig.lib.json",
+            "packageJson": "packages/nx-sst/package.json",
+            "main": "packages/nx-sst/src/index.ts",
+            "assets": [
+              "packages/nx-sst/*.md",
+              {
+                "input": "./packages/nx-sst/src",
+                "glob": "**/!(*.ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/nx-sst/src",
+                "glob": "**/*.d.ts",
+                "output": "./src"
+              },
+              {
+                "input": "./packages/nx-csst",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./packages/nx-csst",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "nx-sst-e2e": {
+      "root": "e2e/nx-sst-e2e",
+      "projectType": "application",
+      "sourceRoot": "e2e/nx-sst-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "nx-sst:build",
+            "jestConfig": "e2e/nx-sst-e2e/jest.config.js"
+          }
+        }
+      }
     }
   },
   "cli": {

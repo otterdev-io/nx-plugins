@@ -40,6 +40,13 @@
     "nx-exec-e2e": {
       "tags": [],
       "implicitDependencies": ["nx-exec"]
+    },
+    "nx-sst": {
+      "tags": []
+    },
+    "nx-sst-e2e": {
+      "tags": [],
+      "implicitDependencies": ["nx-sst"]
     }
   },
   "workspaceLayout": {
