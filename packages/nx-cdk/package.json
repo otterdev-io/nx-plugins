@@ -10,8 +10,5 @@
   },
   "homepage": "https://github.com/otterdev-io/nx-plugins",
   "description": "Nx plugin for AWS CDK apps",
-  "author": "Christopher Fraser",
-  "dependencies": {
-    "@otterdev/nx-exec": "^0.0.3"
-  }
+  "author": "Christopher Fraser"
 }

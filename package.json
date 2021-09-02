@@ -31,30 +31,36 @@
     "help": "nx help"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@nrwl/cli": "12.6.5",
-    "@nrwl/devkit": "12.6.5",
-    "@nrwl/eslint-plugin-nx": "12.6.5",
-    "@nrwl/jest": "12.6.5",
-    "@nrwl/linter": "12.6.5",
-    "@nrwl/node": "12.6.5",
-    "@nrwl/nx-plugin": "^12.6.5",
-    "@nrwl/tao": "12.6.5",
-    "@nrwl/workspace": "12.6.5",
-    "@types/jest": "26.0.24",
-    "@types/node": "14.14.33",
-    "@typescript-eslint/eslint-plugin": "~4.28.3",
-    "@typescript-eslint/parser": "~4.28.3",
-    "dotenv": "~10.0.0",
-    "eslint": "7.22.0",
-    "eslint-config-prettier": "8.1.0",
-    "jest": "27.0.3",
-    "prettier": "^2.3.1",
-    "ts-jest": "27.0.3",
-    "ts-node": "~9.1.1",
-    "tslib": "^2.0.0",
-    "typescript": "~4.3.5"
-  }
+    "@nrwl/cli": "12.8.0",
+    "@nrwl/devkit": "12.8.0",
+    "@nrwl/eslint-plugin-nx": "12.8.0",
+    "@nrwl/jest": "12.8.0",
+    "@nrwl/linter": "12.8.0",
+    "@nrwl/node": "12.8.0",
+    "@nrwl/nx-cloud": "^12.3.10",
+    "@nrwl/nx-plugin": "12.8.0",
+    "@nrwl/tao": "12.8.0",
+    "@nrwl/workspace": "12.8.0",
+    "@types/jest": "27.0.1",
+    "@types/node": "16.7.10",
+    "@typescript-eslint/eslint-plugin": "~4.30.0",
+    "@typescript-eslint/parser": "~4.30.0",
+    "dotenv": "10.0.0",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "8.3.0",
+    "jest": "27.1.0",
+    "prettier": "^2.3.2",
+    "ts-jest": "27.0.5",
+    "ts-node": "~10.2.1",
+    "tslib": "^2.3.1",
+    "typescript": "~4.4.2"
+  },
+  "workspaces": [
+    "packages/nx-cdk",
+    "packages/nx-exec",
+    "packages/nx-sst"
+  ]
 }
