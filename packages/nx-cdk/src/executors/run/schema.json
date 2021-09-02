@@ -27,5 +27,5 @@
       "description": "Emits the synthesized cloud assembly into a directory"
     }
   },
-  "required": ["command", "outputPath"]
+  "required": ["command"]
 }

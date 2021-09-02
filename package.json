@@ -59,8 +59,6 @@
     "typescript": "~4.4.2"
   },
   "workspaces": [
-    "packages/nx-cdk",
-    "packages/nx-exec",
-    "packages/nx-sst"
+    "packages/*"
   ]
 }

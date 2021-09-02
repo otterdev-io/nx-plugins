@@ -21,10 +21,11 @@ function updateDependencies(tree: Tree) {
     {
       '@serverless-stack/cli': '0.40.6',
       '@serverless-stack/resources': '0.40.6',
+      '@aws-cdk/core': '1.114.0',
     },
     {
-      '@aws-cdk/assert': '1.121.0',
-      '@types/aws-lambda': '^8.10.83',
+      '@aws-cdk/assert': '1.114 .0',
+      '@types/aws-lambda': '^8.10.70',
       '@otterdev/nx-sst': 'latest',
     }
   );
