@@ -6,6 +6,7 @@ import {
   offsetFromRoot,
   formatFiles,
   Tree,
+  writeJson,
 } from '@nrwl/devkit';
 import * as path from 'path';
 import { AppGeneratorSchema } from './schema';
@@ -13,6 +14,7 @@ import { jestProjectGenerator } from '@nrwl/jest';
 import initGenerator from '../init/init';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 import { SSTRunExecutorSchema } from '../../executors/sst/schema';
+import { join } from 'path';
 
 interface NormalizedSchema extends AppGeneratorSchema {
   projectName: string;
@@ -67,6 +69,13 @@ function addFiles(host: Tree, options: NormalizedSchema) {
     offsetFromRoot: offsetFromRoot(options.projectRoot),
     template: '',
   };
+  const packageJsonPath = join(options.projectRoot, 'package.json');
+  writeJson(host, packageJsonPath, {
+    name: options.name,
+    scripts: {
+      sst: 'sst',
+    },
+  });
   generateFiles(
     host,
     path.join(__dirname, 'files'),
@@ -80,9 +89,9 @@ export default async function (host: Tree, schema: AppGeneratorSchema) {
 
   const initTask = await initGenerator(host, options);
 
-  const runTarget = (opts: Omit<SSTRunExecutorSchema, 'outputPath'>) => ({
-    executor: '@otterdev/nx-sst:run',
-    options: { ...opts, outputPath: `dist/${options.projectRoot}` },
+  const runTarget = (options: SSTRunExecutorSchema) => ({
+    executor: '@otterdev/nx-sst:sst',
+    options,
   });
   addProjectConfiguration(host, options.projectName, {
     root: options.projectRoot,
@@ -94,7 +103,7 @@ export default async function (host: Tree, schema: AppGeneratorSchema) {
       remove: runTarget({ command: 'remove' }),
       build: {
         ...runTarget({ command: 'build' }),
-        outputs: ['{options.outputPath'],
+        outputs: [`${options.projectRoot}/.build`],
       },
       'sst-test': runTarget({ command: 'test' }),
       cdk: runTarget({ command: 'cdk' }),

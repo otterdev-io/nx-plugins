@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
-  "title": "Run",
+  "title": "SST",
   "description": "Run sst command",
   "type": "object",
   "properties": {

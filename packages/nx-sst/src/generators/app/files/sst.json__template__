@@ -1,7 +1,7 @@
 {
   "name": "<%= name %>",
   "stage": "dev",
-  "region": "us-east-1",
+  "region": "<%= region %>",
   "lint": true,
   "typeCheck": true
 }

@@ -14,10 +14,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@otterdev/nx-cdk": ["packages/nx-cdk/src/index.ts"],
-      "@otterdev/nx-exec": ["packages/nx-exec/src/index.ts"]
-    }
+    "paths": {}
   },
   "exclude": ["node_modules", "tmp"]
 }

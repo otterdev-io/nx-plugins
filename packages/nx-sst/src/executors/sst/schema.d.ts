@@ -5,5 +5,4 @@ export interface SSTRunExecutorSchema {
   region?: string;
   roleArn?: string;
   options?: string;
-  outputPath: string;
 }
