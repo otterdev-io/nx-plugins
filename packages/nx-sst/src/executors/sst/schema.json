@@ -30,9 +30,13 @@
       "type": "string",
       "description": "ARN of Role to use when invoking CloudFormation"
     },
-    "options": {
-      "type": "string",
-      "description": "Other options to pass to sst"
+    "no-color": {
+      "type": "boolean",
+      "description": "Remove colors and other style from console output"
+    },
+    "verbose": {
+      "type": "boolean",
+      "description": "Show more debug info in the output"
     }
   },
   "required": ["command"]

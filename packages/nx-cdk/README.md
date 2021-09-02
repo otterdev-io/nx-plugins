@@ -8,13 +8,13 @@ An Nx plugin which provides support for cdk apps.
 npm install @otterdev-io/nx-cdk
 ```
 
-## Create a cdk app:
+## Create a typescript cdk app:
 
 ```sh
 nx g @otterdev/nx-cdk:app <cdk project name>
 ```
 
-All CDK commands are supported
+All CDK commands are supported.
 
 For example, if your project is named web-infra:
 ## Boostrap:
@@ -25,7 +25,7 @@ nx run web-infra:boostrap
 
 ## Synth:
 
-To just synth:
+To synth:
 
 ```sh
 nx run web-infra:synth
@@ -37,7 +37,7 @@ or you can use
 nx run web-infra:build
 ```
 
-Which will build dependent projects aswell in the default configuration
+Which will build dependent projects aswell in the default configuration. Build also suppresses synth output.
 
 ## Deploy:
 ```

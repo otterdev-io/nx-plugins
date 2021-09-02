@@ -4,5 +4,6 @@ export interface SSTRunExecutorSchema {
   stage?: string;
   region?: string;
   roleArn?: string;
-  options?: string;
+  noColor?: boolean;
+  verbose?: boolean;
 }

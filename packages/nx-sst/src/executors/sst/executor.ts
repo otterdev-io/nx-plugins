@@ -11,10 +11,11 @@ export default async function runExecutor(
   const region = options.region ? `--region ${options.region}` : '';
   const roleArn = options.roleArn ? `--role-arn ${options.roleArn}` : '';
   const parameters = options.parameters?.join(' ') ?? '';
-  const opt = options.options ?? '';
+  const noColor = options.noColor ? '--no-color' : '';
+  const verbose = options.verbose ? '--verbose' : '';
 
   return execExecutor({
-    command: `sst ${options.command} ${parameters} ${stage} ${region} ${roleArn} ${opt}`,
+    command: `sst ${options.command} ${parameters} ${stage} ${region} ${roleArn} ${noColor} ${verbose}`,
     cwd: projectRoot,
   });
 }

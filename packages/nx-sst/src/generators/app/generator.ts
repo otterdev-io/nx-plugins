@@ -68,12 +68,17 @@ function addFiles(host: Tree, options: NormalizedSchema) {
     ...names(options.name),
     offsetFromRoot: offsetFromRoot(options.projectRoot),
     template: '',
+    dot: '.',
   };
   const packageJsonPath = join(options.projectRoot, 'package.json');
   writeJson(host, packageJsonPath, {
     name: options.name,
     scripts: {
       sst: 'sst',
+    },
+    // App build seems to blow up without these
+    dependencies: {
+      '@serverless-stack/resources': '*',
     },
   });
   generateFiles(
