@@ -12,7 +12,7 @@ import { AppGeneratorSchema } from './schema';
 import { jestProjectGenerator } from '@nrwl/jest';
 import initGenerator from '../init/init';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
-import { SSTRunExecutorSchema } from '../../executors/run/schema';
+import { SSTRunExecutorSchema } from '../../executors/sst/schema';
 
 interface NormalizedSchema extends AppGeneratorSchema {
   projectName: string;
@@ -96,7 +96,7 @@ export default async function (host: Tree, schema: AppGeneratorSchema) {
         ...runTarget({ command: 'build' }),
         outputs: ['{options.outputPath'],
       },
-      test: runTarget({ command: 'test' }),
+      'sst-test': runTarget({ command: 'test' }),
       cdk: runTarget({ command: 'cdk' }),
       'add-cdk': runTarget({ command: 'add-cdk' }),
     },

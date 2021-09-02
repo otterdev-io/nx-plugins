@@ -177,12 +177,12 @@
                 "output": "./src"
               },
               {
-                "input": "./packages/nx-csst",
+                "input": "./packages/nx-sst",
                 "glob": "generators.json",
                 "output": "."
               },
               {
-                "input": "./packages/nx-csst",
+                "input": "./packages/nx-sst",
                 "glob": "executors.json",
                 "output": "."
               }
