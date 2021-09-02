@@ -8,8 +8,13 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "MTZmYjhhN2QtY2E2Ny00NDUxLThhMzYtZDVmNTRkZDQzYThmfHJlYWQtd3JpdGU="
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "ZDM0ZDM5OTAtYWZjZS00YTdjLWEwMzctNzk1M2YzZjZlYzIyfHJlYWQtd3JpdGU="
       }
     }
   },
@@ -19,21 +24,27 @@
     },
     "nx-cdk-e2e": {
       "tags": [],
-      "implicitDependencies": ["nx-cdk"]
+      "implicitDependencies": [
+        "nx-cdk"
+      ]
     },
     "nx-exec": {
       "tags": []
     },
     "nx-exec-e2e": {
       "tags": [],
-      "implicitDependencies": ["nx-exec"]
+      "implicitDependencies": [
+        "nx-exec"
+      ]
     },
     "nx-sst": {
       "tags": []
     },
     "nx-sst-e2e": {
       "tags": [],
-      "implicitDependencies": ["nx-sst"]
+      "implicitDependencies": [
+        "nx-sst"
+      ]
     }
   }
 }
