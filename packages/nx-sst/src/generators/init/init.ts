@@ -19,13 +19,12 @@ function updateDependencies(tree: Tree) {
   return addDependenciesToPackageJson(
     tree,
     {
-      '@aws-cdk/core': '1.118.0',
-      '@serverless-stack/cli': '0.40.1',
-      '@serverless-stack/resources': '0.40.1',
+      '@serverless-stack/cli': '0.40.6',
+      '@serverless-stack/resources': '0.40.6',
     },
     {
-      '@aws-cdk/assert': '1.118.0',
-      '@types/aws-lambda': '^8.10.70',
+      '@aws-cdk/assert': '1.121.0',
+      '@types/aws-lambda': '^8.10.83',
       '@otterdev/nx-sst': 'latest',
     }
   );

@@ -33,11 +33,7 @@
     "options": {
       "type": "string",
       "description": "Other options to pass to sst"
-    },
-    "outputPath": {
-      "type": "string",
-      "description": "Build output to this directory"
     }
   },
-  "required": ["command", "outputPath"]
+  "required": ["command"]
 }
