@@ -1,6 +1,8 @@
 # nx-sst
 
-An Nx plugin which provides support for Serverless Stack (SST) apps
+An Nx plugin which provides support for Serverless Stack (SST) apps.
+Note that it only works on Node 16 / npm 7 and up.
+ It may work with yarn if you have a workspace set up, and your app is a part of it.
 
 ## Add the plugin to your workspace:
 
