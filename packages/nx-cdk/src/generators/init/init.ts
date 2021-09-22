@@ -34,14 +34,14 @@ function updateDependencies(tree: Tree) {
   return addDependenciesToPackageJson(
     tree,
     {
-      '@aws-cdk/core': '1.118.0',
-      'source-map-support': '^0.5.16',
+      '@aws-cdk/core': '^1.124.0',
+      'source-map-support': '^0.5.20',
     },
     {
-      '@aws-cdk/assert': '1.118.0',
-      '@types/node': '10.17.27',
-      'ts-node': '^9.0.0',
-      '@otterdev/nx-cdk': 'latest',
+      '@aws-cdk/assert': '^1.124.0',
+      '@types/node': '^12.20.26',
+      'ts-node': '^10.2.1',
+      '@otterdev/nx-cdk': '^0.0.12',
     }
   );
 }
