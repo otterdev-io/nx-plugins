@@ -1,4 +1,7 @@
 0.0.11 - 22 September 2021
+- Update dependencies of generated project
+ 
+0.0.11 - 22 September 2021
 - Export generator and executor for use in other packages
   
 0.0.10 - 3 September 2021
