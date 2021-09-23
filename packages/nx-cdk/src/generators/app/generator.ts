@@ -14,14 +14,14 @@ import initGenerator from '../init/init';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 import { CDKRunExecutorSchema } from '../../executors/run/schema';
 
-interface NormalizedSchema extends AppGeneratorSchema {
+export interface NormalizedSchema extends AppGeneratorSchema {
   projectName: string;
   projectRoot: string;
   projectDirectory: string;
   parsedTags: string[];
 }
 
-function normalizeOptions(
+export function normalizeOptions(
   host: Tree,
   options: AppGeneratorSchema
 ): NormalizedSchema {

@@ -1,3 +1,6 @@
+0.0.13 - 23 September 2021
+- Export more functions
+
 0.0.11 - 22 September 2021
 - Update dependencies of generated project
  
