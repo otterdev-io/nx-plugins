@@ -7,7 +7,10 @@ export default async function runExecutor(
   context: ExecutorContext
 ) {
   const projectRoot = context.workspace.projects[context.projectName].root;
-  const outPath = path.join(offsetFromRoot(projectRoot), options.outputPath);
+  const outPath = path.join(
+    offsetFromRoot(projectRoot),
+    options.outputPath ?? ''
+  );
   const parameters = options.parameters?.join(' ') ?? '';
   const opt = options.options ?? '';
 

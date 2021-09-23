@@ -83,6 +83,7 @@ export default async function (host: Tree, schema: AppGeneratorSchema) {
   const outputPath = { outputPath: `dist/${options.projectRoot}` };
   const runTarget = (options: CDKRunExecutorSchema) => ({
     executor: '@otterdev/nx-cdk:run',
+    ...outputPath,
     options,
   });
   addProjectConfiguration(host, options.projectName, {
@@ -91,11 +92,11 @@ export default async function (host: Tree, schema: AppGeneratorSchema) {
     targets: {
       list: runTarget({ command: 'list' }),
       synth: {
-        ...runTarget({ command: 'synth', ...outputPath }),
+        ...runTarget({ command: 'synth' }),
         outputs: ['{options.outputPath'],
       },
       build: {
-        ...runTarget({ command: 'synth', options: '-q', ...outputPath }),
+        ...runTarget({ command: 'synth', options: '-q' }),
         outputs: ['{options.outputPath'],
       },
       bootstrap: runTarget({
