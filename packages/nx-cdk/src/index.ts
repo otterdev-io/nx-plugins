@@ -7,7 +7,7 @@ import cdkRunExecutor from './executors/run/executor';
 export {
   cdkAppGenerator,
   normalizeOptions as cdkAppNormalizeOptions,
-  NormalizedSchema as CdkAppNormizedSchema,
+  NormalizedSchema as CdkAppNormalizedSchema,
   cdkRunExecutor,
 };
 export * from './generators/app/schema';
