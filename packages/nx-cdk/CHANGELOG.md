@@ -1,3 +1,6 @@
+0.0.12 - 24 September 2021
+- Fix outputpath added to workspace.json
+
 0.0.11 - 22 September 2021
 - Export generator and executor for use in other packages
 - Update dependencies of generated project
