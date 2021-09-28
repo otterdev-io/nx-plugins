@@ -1,3 +1,5 @@
+0.0.14 - 28 September 2021
+- Fix missing dependency
 
 0.0.13 - 28 September 2021
 - Fix outputpath for real
