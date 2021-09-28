@@ -10,16 +10,17 @@ import { jestInitGenerator } from '@nrwl/jest';
 import { runTasksInSerial } from '@nrwl/workspace/src/utilities/run-tasks-in-serial';
 import { InitSchema } from './schema';
 
+function addIfNotExists(arr: string[] | undefined, item: string) {
+  if (arr && !arr.includes(item)) {
+    arr.push(item);
+  }
+}
+
 function updateCacheableTasks(tree: Tree) {
   updateJson(tree, 'nx.json', (json: NxJsonConfiguration) => {
     const defaultCacheableOperations: string[] | undefined =
       json.tasksRunnerOptions?.default?.options?.cacheableOperations;
-    if (
-      defaultCacheableOperations &&
-      !defaultCacheableOperations.includes('synth')
-    ) {
-      defaultCacheableOperations.push('synth');
-    }
+    addIfNotExists(defaultCacheableOperations, 'synth');
     return json;
   });
 }
