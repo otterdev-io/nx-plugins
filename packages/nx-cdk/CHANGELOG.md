@@ -1,3 +1,7 @@
+
+0.0.13 - 28 September 2021
+- Fix outputpath for real
+
 0.0.12 - 24 September 2021
 - Fix outputpath added to workspace.json
 
