@@ -1,7 +1,7 @@
 import { CDKRunExecutorSchema } from './schema';
 import executor from './executor';
 
-const options: CDKRunExecutorSchema;
+// const options: CDKRunExecutorSchema;
 
 describe('CDK Run Executor', () => {
   it('can run', async () => {

@@ -3,4 +3,5 @@ export interface CDKRunExecutorSchema {
   parameters?: string[];
   options?: string;
   outputPath?: string;
+  profile?: string;
 }
